@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Palette Generator</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -18,10 +17,10 @@
       <section class="hero">
         <h1>Generate Beatiful Color Palette</h1>
         <p>Create your new theme</p>
-        <button class="btn" onclick="">Generate Palette</button>
+        <button class="btn" onclick="generateNewPalette()">Generate Palette</button>
       </section>
       <!-- Color display -->
-      <div class="palette-container" id="paletterContainer">
+      <div class="palette-container" id="paletteContainer">
 
       </div>
 
@@ -29,11 +28,11 @@
        <section class="stats">
         <div class="stat-items">
             <div class="stat-number">2.5M+</div>
-            <div class="stat-label"Colors generated</div>
+            <div class="stat-label">Colors generated</div>
         </div>
         <div class="stat-items">
             <div class="stat-number">10M+</div>
-            <div class="stat-label"Palettes generated</div>
+            <div class="stat-label">Palettes generated</div>
         </div>
        </section>
 
@@ -49,5 +48,26 @@
             </form>
         </div>
       </footer>
+      <script>
+        function generateRandomColor(){
+    return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')
+}
+
+function generateNewPalette(){
+        const container = document.getElementById('paletteContainer');
+        container.innerHTML = '';
+
+        for (let i = 0; i < 5; i++){
+            const color = generateRandomColor();
+            const colorBox = document.createElement('div');
+            colorBox.className = 'color-box';
+            colorBox.style.backgroundColor = color;
+            colorBox.textContent = color.toUpperCase();
+            container.appendChild(colorBox)
+        }
+}
+
+generateNewPalette();
+      </script>
 </body>
 </html>
